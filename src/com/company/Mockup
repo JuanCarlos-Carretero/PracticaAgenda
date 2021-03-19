@@ -1,0 +1,67 @@
++------------------+
+|      AGENDA      |
++------------------+
+
+1. Lista de contactos
+2. Salir
+
+Opcion:
+1
+
+    ---------------------------------- Lista de contactos
+    +------------------+
+    |LISTA DE CONTACTOS|
+    +------------------+
+    |Lista de los contactos|
+    1. Buscar contacto
+    2. Crear un contacto
+
+    Opcion:
+    1
+       __________________________________ Buscar contacto
+       |Nombre de contacto: ______
+       |-INFORMACION DEL CONTACTO-
+       |1. Editar este contacto
+       |2. Eliminar este contacto
+       |3. Salir
+       |
+        SubOpcion:
+        1
+
+            ----------------------------- Editar este contacto
+            | +-----------------+
+            | | EDITAR CONTACTO |
+            | +-----------------+
+            | Nombre:
+            | Apellido 1:
+            | Apellido 2 (Opcional):
+            | Grupo (Opcional): (Familiar, Amigo ...)
+            | Telefono:
+            | Email (Opcional):
+            | Direccion (Opcional):
+            | Fecha de cumpleaños (Opcional):
+            |
+            | ¡Contacto Guardado Exitosamente!
+
+        SubOpcion:
+        2
+
+        ¡Contacto Eliminado Exitosamente!
+
+    Opcion:
+    2
+       __________________________________ Crear un contacto
+       | +------------------+
+       | |  CREAR CONTACTO  |
+       | +------------------+
+       |
+       | Nombre:
+       | Apellido 1:
+       | Apellido 2 (Opcional):
+       | Grupo (Opcional): (Familiar, Amigo ...)
+       | Telefono:
+       | Email (Opcional):
+       | Direccion (Opcional):
+       | Fecha de cumpleaños (Opcional):
+       |
+       | ¡Contacto Guardado Exitosamente!
