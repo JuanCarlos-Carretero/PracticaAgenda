@@ -13,6 +13,13 @@ public class PantallaBuscar {
         for (Contacto contacto : Main.agenda.contactos){
             if (contacto.nombre.equals(busqueda)){
                 System.out.println(contacto.nombre);
+                System.out.println(contacto.apellido1);
+                System.out.println(contacto.apellido2);
+                System.out.println(contacto.grupo);
+                System.out.println(contacto.nTelefono);
+                System.out.println(contacto.eMail);
+                System.out.println(contacto.fechaCumpleaños);
+                System.out.println();
                 encontrado = true;
                 contactoEncontrado = contacto;
             }

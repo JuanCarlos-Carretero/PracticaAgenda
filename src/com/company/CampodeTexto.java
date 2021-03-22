@@ -7,7 +7,7 @@ class CampoDeTexto {
     }
 
     String pedir(String prompt, boolean obligatiorio){
-        System.out.println("\033[31m" + prompt + ":\033[0m");
+        System.out.println("\033[35m" + prompt + ":\033[0m");
 
         if(!obligatiorio){
             return Main.scan.nextLine();

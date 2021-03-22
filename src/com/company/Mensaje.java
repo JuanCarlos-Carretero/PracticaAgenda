@@ -9,13 +9,13 @@ public class Mensaje {
 
     void mostrarWarn(String texto){
         printBefore();
-        System.out.println("\033[32m" + texto + "\033[0m");
+        System.out.println("\033[33m" + texto + "\033[0m");
         printAfter();
     }
 
     void mostrarInfo(String texto){
         printBefore();
-        System.out.println("\033[33m" + texto + "\033[0m");
+        System.out.println("\033[36m" + texto + "\033[0m");
         printAfter();
     }
 
