@@ -1,11 +1,9 @@
 package com.company;
 
 public class PantallaEditar {
-    void mostrar() {
+    void mostrar(Contacto contacto) {
         Titulo titulo = new Titulo();
         titulo.mostrar("EDITAR CONTACTO");
-
-        Contacto contacto = new Contacto();
 
         System.out.println("Nombre: "+ contacto.nombre);
         System.out.println("¿Por cual quieres cambiar?");
@@ -38,8 +36,6 @@ public class PantallaEditar {
         System.out.println("Fecha de su cumpleaños: "+ contacto.fechaCumpleaños);
         System.out.println("¿Por cual quieres cambiar?");
         contacto.fechaCumpleaños = Main.scan.nextLine();
-
-        Main.agenda.contactos.add(contacto);
 
         System.out.println("¡Contacto Editado Exitosamente!");
     }

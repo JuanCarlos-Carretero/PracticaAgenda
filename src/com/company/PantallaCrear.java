@@ -6,30 +6,23 @@ public class PantallaCrear {
         titulo.mostrar("CREAR CONTACTO");
 
         Contacto contacto = new Contacto();
+        CampoDeTexto campoDeTexto = new CampoDeTexto();
 
-        System.out.println("Nombre:");
-        contacto.nombre = Main.scan.nextLine();
+        contacto.nombre = campoDeTexto.pedir("Nombre", true);
 
-        System.out.println("1º Apellido:");
-        contacto.apellido1 = Main.scan.nextLine();
+        contacto.apellido1 = campoDeTexto.pedir("1º Apellido", true);
 
-        System.out.println("2º Apellido:");
-        contacto.apellido2 = Main.scan.nextLine();
+        contacto.apellido2 = campoDeTexto.pedir("2º Apellido");
 
-        System.out.println("Grupo (Familia, Amigos, etc):");
-        contacto.grupo = Main.scan.nextLine();
+        contacto.grupo = campoDeTexto.pedir("Grupo (Familia, Amigos, Trabajos");
 
-        System.out.println("Telefono:");
-        contacto.nTelefono = Main.scan.nextLine();
+        contacto.nTelefono = campoDeTexto.pedir("Numero Telefono");
 
-        System.out.println("Email:");
-        contacto.eMail = Main.scan.nextLine();
+        contacto.eMail = campoDeTexto.pedir("Email");
 
-        System.out.println("Dirección:");
-        contacto.direccion = Main.scan.nextLine();
+        contacto.direccion = campoDeTexto.pedir("Direccion");
 
-        System.out.println("Fecha de su cumpleaños:");
-        contacto.fechaCumpleaños = Main.scan.nextLine();
+        contacto.fechaCumpleaños = campoDeTexto.pedir("Fecha de Cumpleaños");
 
         Main.agenda.contactos.add(contacto);
 
