@@ -5,38 +5,33 @@ public class PantallaEditar {
         Titulo titulo = new Titulo();
         titulo.mostrar("EDITAR CONTACTO");
 
+        CampoDeTexto campoDeTexto = new CampoDeTexto();
+
         System.out.println("Nombre: "+ contacto.nombre);
-        System.out.println("¿Por cual quieres cambiar?");
-        contacto.nombre = Main.scan.nextLine();
+        contacto.nombre = campoDeTexto.pedir("¿Por cual quieres cambiar?");
 
         System.out.println("1º Apellido: "+ contacto.apellido1);
-        System.out.println("¿Por cual quieres cambiar?");
-        contacto.apellido1 = Main.scan.nextLine();
+        contacto.apellido1 = campoDeTexto.pedir("¿Por cual quieres cambiar?");
 
         System.out.println("2º Apellido: "+ contacto.apellido2);
-        System.out.println("¿Por cual quieres cambiar?");
-        contacto.apellido2 = Main.scan.nextLine();
+        contacto.apellido2 = campoDeTexto.pedir("¿Por cual quieres cambiar?");
 
         System.out.println("Grupo(Familia, Amigos, etc): "+ contacto.grupo);
-        System.out.println("¿Por cual quieres cambiar?");
-        contacto.grupo = Main.scan.nextLine();
+        contacto.grupo = campoDeTexto.pedir("¿Por cual quieres cambiar?");
 
         System.out.println("Telefono: "+ contacto.nTelefono);
-        System.out.println("¿Por cual quieres cambiar?");
-        contacto.nTelefono = Main.scan.nextLine();
+        contacto.nTelefono = campoDeTexto.pedir("¿Por cual quieres cambiar?");
 
         System.out.println("Email: "+ contacto.eMail);
-        System.out.println("¿Por cual quieres cambiar?");
-        contacto.eMail = Main.scan.nextLine();
+        contacto.eMail = campoDeTexto.pedir("¿Por cual quieres cambiar?");
 
         System.out.println("Dirección: "+ contacto.direccion);
-        System.out.println("¿Por cual quieres cambiar?");
-        contacto.direccion = Main.scan.nextLine();
+        contacto.direccion = campoDeTexto.pedir("¿Por cual quieres cambiar?");
 
         System.out.println("Fecha de su cumpleaños: "+ contacto.fechaCumpleaños);
-        System.out.println("¿Por cual quieres cambiar?");
-        contacto.fechaCumpleaños = Main.scan.nextLine();
+        contacto.fechaCumpleaños = campoDeTexto.pedir("¿Por cual quieres cambiar?");
 
-        System.out.println("¡Contacto Editado Exitosamente!");
+        Mensaje mensaje = new Mensaje();
+        mensaje.mostrarInfo("¡Contacto Editado Exitosamente!");
     }
 }

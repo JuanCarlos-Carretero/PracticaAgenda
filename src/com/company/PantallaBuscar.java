@@ -31,7 +31,7 @@ public class PantallaBuscar {
                 pantallaEditar.mostrar(contactoEncontrado);
             } else if ("2".equals(opcion)) {
                 //Borrar contacto
-
+                Main.agenda.contactos.remove(contactoEncontrado);
             } else if ("3".equals(opcion)) {
                 //Salir
                 return false;

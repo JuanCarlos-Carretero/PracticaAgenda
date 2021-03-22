@@ -15,7 +15,7 @@ public class Menu {
 
             opcion = Main.scan.nextLine();
 
-            if (Integer.valueOf(opcion) > opciones.length) {
+            if (Integer.parseInt(opcion) > opciones.length) {
                 Mensaje mensaje = new Mensaje();
                 mensaje.mostrarError("Esa opcion no existe");
             } else {

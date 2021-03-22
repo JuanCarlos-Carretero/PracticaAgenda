@@ -2,7 +2,6 @@ package com.company;
 
 class CampoDeTexto {
 
-
     String pedir(String prompt) {
         return pedir(prompt, false);
     }
@@ -21,7 +20,7 @@ class CampoDeTexto {
                     return texto;
                 } else {
                     Mensaje mensaje = new Mensaje();
-                    mensaje.mostrarError("Introduzca el campo!");
+                    mensaje.mostrarWarn("!Introduzca el campo!");
                 }
             }
         }
