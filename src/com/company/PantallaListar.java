@@ -5,9 +5,12 @@ public class PantallaListar {
         Titulo titulo = new Titulo();
         titulo.mostrar("LISTA CONTACTOS");
 
+        //Aqui te dice los nombres de los contactos
         for(Contacto contacto: Main.agenda.contactos){
             System.out.println(contacto.nombre);
         }
+        System.out.println();
+
         Menu menu = new Menu();
         String[] opciones = {"BUSCAR", "CREAR"};
         String opcion = menu.elegirOpcion(opciones);
