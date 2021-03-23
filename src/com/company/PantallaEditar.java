@@ -17,10 +17,8 @@ public class PantallaEditar {
 
         //Esto permite editar el apellido1 sin problemas
         System.out.println("1º Apellido: "+ contacto.apellido1);
-        String nuevoApellido1 = campoDeTexto.pedir("¿Por cual quieres cambiar?");
-        if (nuevoNombre.equals("-")){ //Esto permite borrar el apellido1 en caso de que se quiera borrar
-            contacto.apellido1 = null;
-        } else if (!nuevoNombre.isEmpty()){ //Si el apellido1 introducido no es null se cambia por el nuevo nombre
+        String nuevoApellido1 = campoDeTexto.pedir("¿Por cual quieres cambiar?", true);
+        if (!nuevoNombre.isEmpty()){ //Si el apellido1 introducido no es null se cambia por el nuevo nombre
             contacto.apellido1 = nuevoApellido1;
         }
 
@@ -44,10 +42,8 @@ public class PantallaEditar {
 
         //Esto permite editar el telefono sin problemas
         System.out.println("Telefono: "+ contacto.nTelefono);
-        String nuevoTelefono = campoDeTexto.pedir("¿Por cual quieres cambiar?");
-        if (nuevoNombre.equals("-")){ //Esto permite borrar el telefono en caso de que se quiera borrar
-            contacto.nTelefono = null;
-        } else if (!nuevoNombre.isEmpty()){ //Si el telefono introducido no es null se cambia por el nuevo nombre
+        String nuevoTelefono = campoDeTexto.pedir("¿Por cual quieres cambiar?",true);
+        if (!nuevoNombre.isEmpty()){ //Si el telefono introducido no es null se cambia por el nuevo nombre
             contacto.nTelefono = nuevoTelefono;
         }
 

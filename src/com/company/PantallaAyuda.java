@@ -15,17 +15,17 @@ public class PantallaAyuda {
         System.out.println("Para borrar un contacto vaya a la opcion: 1, 1, (buscas el nombre del contacto) y 2 ");
         System.out.println("Para borrar un campo no obligatorio vaya a la opcion: 1, 1, (buscas el nombre del contacto) y 1");
         System.out.println("y despues escriba: - (Cuando este sobre el campo que quiera dejar en blanco)");
+        System.out.println();
 
         Menu menu = new Menu();
-        String[] opciones = {"BUSCAR", "CREAR"};
+        String[] opciones = {"Buscar Contacto", "Crear contacto"};
         String opcion = menu.elegirOpcion(opciones);
 
         if ("1".equals(opcion)) {
-            PantallaBuscar pantallaBuscar = new PantallaBuscar();
-            pantallaBuscar.mostrar();
-        } else if("2".equals(opcion)){
-            PantallaCrear pantallaCrear = new PantallaCrear();
-            pantallaCrear.mostrar();
+            PantallaMenu pantallaMenu = new PantallaMenu();
+            pantallaMenu.mostrar();
+        } else if ("2".equals(opcion)){
+            return false;
         }
         return true;
     }
