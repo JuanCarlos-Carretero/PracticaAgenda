@@ -7,12 +7,14 @@ public class PantallaEditar {
 
         CampoDeTexto campoDeTexto = new CampoDeTexto();
         Mensaje mensaje = new Mensaje();
+        BasedeDatos db = new BasedeDatos();
 
         //Esto permite editar el nombre sin problemas
         System.out.println("Nombre: "+ contacto.nombre);
         String nuevoNombre = campoDeTexto.pedir("¿Por cual quieres cambiar?",true);
         if (!nuevoNombre.isEmpty()){ //Si el nombre introducido no es null se cambia por el nuevo nombre
             contacto.nombre = nuevoNombre;
+            db.updateContactoN(contacto.nombre);
         }
 
         //Esto permite editar el apellido1 sin problemas

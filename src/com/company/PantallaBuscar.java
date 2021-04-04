@@ -12,32 +12,29 @@ public class PantallaBuscar {
         Contacto contactoEncontrado = null;
         for (Contacto contacto : Main.agenda.contactos){
             if (contacto.nombre.equals(busqueda)){
+                BasedeDatos db = new BasedeDatos();
+                db.selectContacto();
+                // System.out.println(contacto.nombre);
 
-                System.out.println(contacto.nombre);
+                // System.out.println(contacto.apellido1);
 
-                System.out.println(contacto.apellido1);
+                // if(contacto.apellido2 == null || contacto.apellido2.equals(""))}
+                // else{
+                //System.out.println(contacto.apellido2);}
 
-                if(contacto.apellido2 == null){
-                } else{
-                    System.out.println(contacto.apellido2);
-                }
+                // if (contacto.grupo == null || contacto.grupo.equals("")){}
+                // else {
+                    //System.out.println(contacto.grupo);}
 
-                if (contacto.grupo == null){
-                } else {
-                    System.out.println(contacto.grupo);
-                }
+                // System.out.println(contacto.nTelefono);
 
-                System.out.println(contacto.nTelefono);
+                // if (contacto.eMail == null || contacto.eMail.equals("")){}
+                // else {
+                    //System.out.println(contacto.eMail);}
 
-                if (contacto.eMail == null){
-                } else {
-                    System.out.println(contacto.eMail);
-                }
-
-                if (contacto.fechaCumpleaños == null){
-                } else {
-                    System.out.println(contacto.fechaCumpleaños);
-                }
+                // if (contacto.fechaCumpleaños == null || contacto.fechaCumpleaños.equals(""))}
+                // else {
+                    //System.out.println(contacto.fechaCumpleaños);}
 
                 System.out.println();
 
@@ -60,6 +57,8 @@ public class PantallaBuscar {
             } else if ("2".equals(opcion)) {
                 //Borrar contacto
                 Main.agenda.contactos.remove(contactoEncontrado);
+                Mensaje mensaje = new Mensaje();
+                mensaje.mostrarInfo("¡El contacto se ha borrado satisfactoriamente!");
             } else if ("3".equals(opcion)) {
                 //Salir
                 return false;
