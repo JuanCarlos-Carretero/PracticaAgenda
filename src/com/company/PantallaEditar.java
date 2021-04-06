@@ -68,12 +68,12 @@ public class PantallaEditar {
         }
 
         //Esto permite borrar la fecha de cumpleaños sin problema
-        System.out.println("Fecha de su cumpleaños: "+ contacto.fechaCumpleaños);
-        String nuevoFechaCumpleaños = campoDeTexto.pedir("¿Por cual quieres cambiar?");
+        System.out.println("Fecha de su cumpleaños: "+ contacto.fechaCumpleanyos);
+        String nuevoFechaCumpleanyos = campoDeTexto.pedir("¿Por cual quieres cambiar?");
         if (nuevoNombre.equals("-")){ //Esto permite borrar la fecha en caso de que se quiera borrar
-            contacto.fechaCumpleaños = null;
+            contacto.fechaCumpleanyos = null;
         } else if (!nuevoNombre.isEmpty()){ //Si la fecha introducido no es null se cambia por el nuevo nombre
-            contacto.fechaCumpleaños = nuevoFechaCumpleaños;
+            contacto.fechaCumpleanyos = nuevoFechaCumpleanyos;
         }
 
 

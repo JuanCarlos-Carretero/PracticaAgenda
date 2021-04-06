@@ -8,9 +8,9 @@ public class Contacto {
     String nTelefono;
     String eMail;
     String direccion;
-    String fechaCumpleaños;
+    String fechaCumpleanyos;
 
-    public Contacto(String nombre, String apellido1, String apellido2, String grupo, String nTelefono, String eMail, String direccion, String fechaCumpleaños) {
+    public Contacto(String nombre, String apellido1, String apellido2, String grupo, String nTelefono, String eMail, String direccion, String fechaCumpleanyos) {
         this.nombre = nombre;
         this.apellido1 = apellido1;
         this.apellido2 = apellido2;
@@ -18,6 +18,6 @@ public class Contacto {
         this.nTelefono = nTelefono;
         this.eMail = eMail;
         this.direccion = direccion;
-        this.fechaCumpleaños = fechaCumpleaños;
+        this.fechaCumpleanyos = fechaCumpleanyos;
     }
 }

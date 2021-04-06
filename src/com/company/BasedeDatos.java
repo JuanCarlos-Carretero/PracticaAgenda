@@ -13,7 +13,7 @@ public class BasedeDatos {
     public static BasedeDatos get(){
         if(instance == null){
             instance = new BasedeDatos();
-
+            createTables();
             try {
                 connection = DriverManager.getConnection(url);
             } catch (SQLException e) {
@@ -32,7 +32,7 @@ public class BasedeDatos {
         }
     }
 
-    void createTables(){
+    static void createTables(){
         try (Statement statement = connection.createStatement()) {
             statement.execute("CREATE TABLE IF NOT EXISTS contacto (nombre text, apellido1 text, apellido2 text, grupo text, nTelefono integer, eMail text, direccion text, fechaCumpleanyos date)");
         } catch (SQLException e) {
@@ -40,7 +40,7 @@ public class BasedeDatos {
         }
     }
 
-    public void insertContacto(String nombre, String apellido1, String apellido2, String grupo, String nTelefono, String eMail, String direccion, String fechaCumpleaños) {
+    public void insertContacto(String nombre, String apellido1, String apellido2, String grupo, String nTelefono, String eMail, String direccion, String fechaCumpleanyos) {
         String sql = "INSERT INTO contacto(nombre,apellido1,apellido2,grupo,nTelefono,eMail,direccion,fechaCumpleanyos) VALUES(?,?,?,?,?,?,?,?)";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -51,7 +51,7 @@ public class BasedeDatos {
             preparedStatement.setString(5, nTelefono);
             preparedStatement.setString(6, eMail);
             preparedStatement.setString(7, direccion);
-            preparedStatement.setString(8, fechaCumpleaños);
+            preparedStatement.setString(8, fechaCumpleanyos);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -127,11 +127,11 @@ public class BasedeDatos {
             System.out.println(e.getMessage());
         }
     }
-    public void updateContactoF(String fechaCumpleaños) {
-        String sql = "UPDATE TABLE contacto(fechaCumpleaños) VALUES(?)";
+    public void updateContactoF(String fechaCumpleanyos) {
+        String sql = "UPDATE TABLE contacto(fechaCumpleanyos) VALUES(?)";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setString(8, fechaCumpleaños);
+            preparedStatement.setString(8, fechaCumpleanyos);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -153,9 +153,9 @@ public class BasedeDatos {
                 String nTelefono = resultSet.getString("nTelefono");
                 String eMail = resultSet.getString("eMail");
                 String direccion = resultSet.getString("direccion");
-                String fechaCumpleaños = resultSet.getString("fechaCumpleaños");
+                String fechaCumpleanyos = resultSet.getString("fechaCumpleaños");
 
-                listaContactos.add(new Contacto(nombre, apellido1, apellido2, grupo, nTelefono, eMail, direccion, fechaCumpleaños));
+                listaContactos.add(new Contacto(nombre, apellido1, apellido2, grupo, nTelefono, eMail, direccion, fechaCumpleanyos));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
