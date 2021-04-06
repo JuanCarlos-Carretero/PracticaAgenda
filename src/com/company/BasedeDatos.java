@@ -13,9 +13,9 @@ public class BasedeDatos {
     public static BasedeDatos get(){
         if(instance == null){
             instance = new BasedeDatos();
-            createTables();
             try {
                 connection = DriverManager.getConnection(url);
+                createTables();
             } catch (SQLException e) {
                 System.out.println(e.getMessage());
             }
@@ -153,7 +153,7 @@ public class BasedeDatos {
                 String nTelefono = resultSet.getString("nTelefono");
                 String eMail = resultSet.getString("eMail");
                 String direccion = resultSet.getString("direccion");
-                String fechaCumpleanyos = resultSet.getString("fechaCumpleaños");
+                String fechaCumpleanyos = resultSet.getString("fechaCumpleanyos");
 
                 listaContactos.add(new Contacto(nombre, apellido1, apellido2, grupo, nTelefono, eMail, direccion, fechaCumpleanyos));
             }
