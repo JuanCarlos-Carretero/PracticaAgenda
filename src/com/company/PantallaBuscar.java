@@ -8,60 +8,61 @@ public class PantallaBuscar {
         // Aqui es donde hago la busqueda de una persona
         System.out.println("¿A quien buscas?");
         String busqueda = Main.scan.nextLine();
-        boolean encontrado = false;
-        Contacto contactoEncontrado = null;
-        for (Contacto contacto : Main.agenda.contactos){
-            if (contacto.nombre.equals(busqueda)){
-                BasedeDatos db = new BasedeDatos();
-                db.selectContacto();
+
+        for (Contacto contacto : Main.db.buscaContacto(busqueda)) {
+            if (!busqueda.equals(contacto.nombre)) {
+                Mensaje mensaje = new Mensaje();
+                mensaje.mostrarError("¡Contacto no encontrado o ese nombre no esta guardado!");
+            } else {
                 // System.out.println(contacto.nombre);
+                System.out.println("Nombre: " + contacto.nombre);
 
                 // System.out.println(contacto.apellido1);
+                System.out.println("1º Apellido: " + contacto.apellido1);
 
-                // if(contacto.apellido2 == null || contacto.apellido2.equals(""))}
-                // else{
-                //System.out.println(contacto.apellido2);}
+                if (contacto.apellido2 == null || contacto.apellido2.equals("")) {
 
-                // if (contacto.grupo == null || contacto.grupo.equals("")){}
-                // else {
-                    //System.out.println(contacto.grupo);}
+                } else {
+                    System.out.println("2º Apellido: " + contacto.apellido2);
+                }
+
+                if (contacto.grupo == null || contacto.grupo.equals("")) {
+
+                } else {
+                    System.out.println("Grupo: " + contacto.grupo);
+                }
 
                 // System.out.println(contacto.nTelefono);
+                System.out.println("Numero de Telefono: " + contacto.nTelefono);
 
-                // if (contacto.eMail == null || contacto.eMail.equals("")){}
-                // else {
-                    //System.out.println(contacto.eMail);}
+                if (contacto.eMail == null || contacto.eMail.equals("")) {
 
-                // if (contacto.fechaCumpleaños == null || contacto.fechaCumpleaños.equals(""))}
-                // else {
-                    //System.out.println(contacto.fechaCumpleaños);}
+                } else {
+                    System.out.println("Email: " + contacto.eMail);
+                }
 
-                System.out.println();
+                if (contacto.fechaCumpleanyos == null || contacto.fechaCumpleanyos.equals("")) {
 
-                encontrado = true;
-                contactoEncontrado = contacto;
+                } else {
+                    System.out.println(contacto.fechaCumpleanyos);
+                }
+                Menu menu = new Menu();
+                String[] opciones = {"EDITAR", "BORRAR", "SALIR"};
+                String opcion = menu.elegirOpcion(opciones);
+
+                if ("1".equals(opcion)) {
+                    //Editar contacto
+                    PantallaEditar pantallaEditar = new PantallaEditar();
+                    pantallaEditar.mostrar(contacto);
+                } else if ("2".equals(opcion)) {
+                    //Borrar contacto
+                    Main.db.deleteContacto(contacto);
+                    Mensaje mensaje = new Mensaje();
+                    mensaje.mostrarInfo("¡El contacto se ha borrado satisfactoriamente!");
+                } else if ("3".equals(opcion)) {
+                    //Salir
+                    return false;
             }
-        }
-        if (!encontrado) {
-            Mensaje mensaje = new Mensaje();
-            mensaje.mostrarError("¡Contacto no encontrado!");
-        } else {
-            Menu menu = new Menu();
-            String[] opciones = {"EDITAR", "BORRAR", "SALIR"};
-            String opcion = menu.elegirOpcion(opciones);
-
-            if ("1".equals(opcion)) {
-                //Editar contacto
-                PantallaEditar pantallaEditar = new PantallaEditar();
-                pantallaEditar.mostrar(contactoEncontrado);
-            } else if ("2".equals(opcion)) {
-                //Borrar contacto
-                Main.agenda.contactos.remove(contactoEncontrado);
-                Mensaje mensaje = new Mensaje();
-                mensaje.mostrarInfo("¡El contacto se ha borrado satisfactoriamente!");
-            } else if ("3".equals(opcion)) {
-                //Salir
-                return false;
             }
         }
         return true;

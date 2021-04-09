@@ -23,7 +23,14 @@ public class BasedeDatos {
         }
         return instance;
     }
-
+    void deleteContacto(Contacto borrarContacto){
+        try (Statement statement = connection.createStatement()){
+            statement.execute("Delete contacto from contacto where nombre like ?");
+        }catch(Exception e){
+            Mensaje mensaje = new Mensaje();
+            mensaje.mostrarWarn("Este contacto no existe");
+        }
+    }
     void deleteTables(){
         try (Statement statement = connection.createStatement()) {
             statement.execute("DROP TABLE IF EXISTS contacto");
@@ -137,8 +144,32 @@ public class BasedeDatos {
             System.out.println(e.getMessage());
         }
     }
+    public List<Contacto> buscaContacto(String busqueda){
+        String sql = "SELECT * FROM contacto where nombre = ?";
 
-    public List<Contacto> selectContacto(){
+        List<Contacto> listaContacto = new ArrayList<>();
+        try (PreparedStatement preparedStatement  = connection.prepareStatement(sql)){
+
+            ResultSet resultSet  = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                String nombre = resultSet.getString("nombre");
+                String apellido1 = resultSet.getString("apellido1");
+                String apellido2 = resultSet.getString("apellido2");
+                String grupo = resultSet.getString("grupo");
+                String nTelefono = resultSet.getString("nTelefono");
+                String eMail = resultSet.getString("eMail");
+                String direccion = resultSet.getString("direccion");
+                String fechaCumpleanyos = resultSet.getString("fechaCumpleanyos");
+
+                listaContacto.add(new Contacto(nombre, apellido1, apellido2, grupo, nTelefono, eMail, direccion, fechaCumpleanyos));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return listaContacto;
+    }
+    public List<Contacto> listaContacto(){
         String sql = "SELECT * FROM contacto";
 
         List<Contacto> listaContactos = new ArrayList<>();

@@ -76,7 +76,6 @@ public class PantallaEditar {
             contacto.fechaCumpleanyos = nuevoFechaCumpleanyos;
         }
 
-
         mensaje.mostrarInfo("¡Contacto Editado Exitosamente!");
     }
 }

@@ -6,7 +6,7 @@ public class PantallaMenu {
         titulo.mostrar("AGENDA");
 
         Menu menu = new Menu();
-        String[] opciones = {"LISTAR","AYUDA","SALIR"};
+        String[] opciones = {"LISTAR","AYUDA","BORRAR AGENDA","SALIR"};
         String opcion = menu.elegirOpcion(opciones);
 
         if ("1".equals(opcion)) {
@@ -16,6 +16,8 @@ public class PantallaMenu {
             PantallaAyuda pantallaAyuda = new PantallaAyuda();
             pantallaAyuda.mostrar();
         } else if ("3".equals(opcion)){
+            Main.db.deleteTables();
+        } else if ("4".equals(opcion)){
             return false;
         }
         return true;

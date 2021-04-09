@@ -15,10 +15,15 @@ public class Menu {
 
             opcion = Main.scan.nextLine();
 
-            if (Integer.parseInt(opcion) > opciones.length) {
-                Mensaje mensaje = new Mensaje();
-                mensaje.mostrarError("Esa opcion no existe");
-            } else {
+            try {
+                if (Integer.parseInt(opcion) > opciones.length) {
+                    Mensaje mensaje = new Mensaje();
+                    mensaje.mostrarError("Esa opcion no existe");
+                } else {
+                    seguirPidiendo = false;
+                }
+            } catch (Exception e){
+                System.out.println("Introduzca un numero");
                 seguirPidiendo = false;
             }
         }
