@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 public class Main {
     static Scanner scan = new Scanner(System.in);
-    static Agenda agenda = new Agenda();
     static BasedeDatos db = BasedeDatos.get();
 
     public static void main(String[] args) {

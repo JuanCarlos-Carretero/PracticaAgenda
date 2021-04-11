@@ -23,9 +23,11 @@ public class BasedeDatos {
         }
         return instance;
     }
-    void deleteContacto(Contacto borrarContacto){
-        try (Statement statement = connection.createStatement()){
-            statement.execute("Delete contacto from contacto where nombre like '?'");
+    void deleteContacto(String nombre){
+        String sql= ("DELETE FROM contacto where nombre=?;");
+        try (PreparedStatement preparedStatement  = connection.prepareStatement(sql)){
+            preparedStatement.setString(1, nombre);
+            preparedStatement.executeUpdate();
         }catch(Exception e){
             Mensaje mensaje = new Mensaje();
             mensaje.mostrarWarn("Este contacto no existe");
@@ -64,141 +66,95 @@ public class BasedeDatos {
             System.out.println(e.getMessage());
         }
     }
-    public void updateContactoN(String nombre) {
-        String sql = "UPDATE TABLE contacto(nombre) VALUES(?)";
+    public void updateContactoN(String ViejoN,String NuevoN) {
+        String sql = "UPDATE contacto SET nombre = ? WHERE nombre = ?;";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setString(1, nombre);
+            preparedStatement.setString(1, NuevoN);
+            preparedStatement.setString(2, ViejoN);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
-    public void updateContactoA1(String apellido1) {
-        String sql = "UPDATE TABLE contacto(apellido1) VALUES(?)";
+    public void updateContactoA1(String ViejoA1,String NuevoA1) {
+        String sql = "UPDATE contacto SET apellido1 = ? WHERE nombre = ?;";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setString(2, apellido1);
+            preparedStatement.setString(1, NuevoA1);
+            preparedStatement.setString(2, ViejoA1);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
-    public void updateContactoA2(String apellido2) {
-        String sql = "UPDATE TABLE contacto(apellido2) VALUES(?)";
+    public void updateContactoA2(String ViejoA2, String NuevoA2) {
+        String sql = "UPDATE contacto SET apellido2 = ? WHERE nombre = ?;";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setString(3, apellido2);
+            preparedStatement.setString(1, NuevoA2);
+            preparedStatement.setString(2, ViejoA2);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
-    public void updateContactoG(String grupo) {
-        String sql = "UPDATE TABLE contacto(grupo) VALUES(?)";
+    public void updateContactoG(String ViejoG, String NuevoG) {
+        String sql = "UPDATE contacto SET grupo = ? WHERE nombre = ?;";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setString(4, grupo);
+            preparedStatement.setString(1, NuevoG);
+            preparedStatement.setString(2, ViejoG);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
-    public void updateContactonT(String nTelefono) {
-        String sql = "UPDATE TABLE contacto(nTelefono) VALUES(?)";
+    public void updateContactonT(String ViejonT, String NuevonT) {
+        String sql = "UPDATE contacto SET nTelefono = ? WHERE nombre = ?;";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setString(5, nTelefono);
+            preparedStatement.setString(1, NuevonT);
+            preparedStatement.setString(2, ViejonT);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
-    public void updateContactoE(String eMail) {
-        String sql = "UPDATE TABLE contacto(eMail) VALUES(?)";
+    public void updateContactoE(String ViejoE, String NuevoE) {
+        String sql = "UPDATE contacto SET eMail = ? WHERE nombre = ?;";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setString(6, eMail);
+            preparedStatement.setString(1, NuevoE);
+            preparedStatement.setString(2, ViejoE);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
-    public void updateContactoD(String direccion) {
-        String sql = "UPDATE TABLE contacto(direccion) VALUES(?)";
+    public void updateContactoD(String ViejaD, String NuevaD) {
+        String sql = "UPDATE contacto SET direccion = ? WHERE nombre = ?;";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setString(7, direccion);
+            preparedStatement.setString(1, NuevaD);
+            preparedStatement.setString(2,ViejaD);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
-    public void updateContactoF(String fechaCumpleanyos) {
-        String sql = "UPDATE TABLE contacto(fechaCumpleanyos) VALUES(?)";
+    public void updateContactoF(String ViejaF, String NuevaF) {
+        String sql = "" +
+                "UPDATE contacto SET fechaCumpleanyos = ? WHERE nombre = ?;";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setString(8, fechaCumpleanyos);
+            preparedStatement.setString(1, NuevaF);
+            preparedStatement.setString(2, ViejaF);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
-
-    public List<Contacto> BuscaContacto(String nombre){
-        String sql = "SELECT * FROM contacto WHERE nombre = '?'";
-
-        List<Contacto> listaContacto = new ArrayList<>();
-        try (PreparedStatement preparedStatement  = connection.prepareStatement(sql)){
-
-            ResultSet resultSet  = preparedStatement.executeQuery();
-            while (resultSet.next()) {
-                resultSet.getString("nombre");
-                listaContacto.add(new Contacto(nombre, null, null, null, null, null, null, null));
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-
-        return listaContacto;
-    }
-
-    public boolean existeContacto(String comanda) {
-        // convertir comanda a nombre + apellido1
-        boolean ape=false;
-        String nombre="";
-        String apellido1="";
-        for (int i = 0; i < comanda.length(); i++) {
-            if (!ape){
-                if (comanda.charAt(i)==' '){
-                    ape=true;
-                }else{
-                    nombre=nombre+comanda.charAt(i);
-                }
-            }else{
-                apellido1=apellido1+comanda.charAt(i);
-            }
-        }
-
-        String sql = "SELECT nombre, apellido1 FROM contacto WHERE nombre like ? and apellido1 like ?";
-
-        try (PreparedStatement preparedStatement  = connection.prepareStatement(sql)){
-            preparedStatement.setString(1, nombre);
-            preparedStatement.setString(2,apellido1);
-            ResultSet resultSet  = preparedStatement.executeQuery();
-            String nombre1 = resultSet.getString("nombre");
-            String apellido_1 = resultSet.getString("apellido1");
-
-
-        } catch (SQLException e) {
-            Mensaje mensaje = new Mensaje();
-            mensaje.mostrarError("¡Este contacto no existe!");
-            return false;
-        }
-        return true;
-
-    }
-
 
     public List<Contacto> ContactoEncontrado(String nombre){
         String sql = "SELECT * FROM contacto WHERE nombre=?";
@@ -227,7 +183,7 @@ public class BasedeDatos {
         return listaContacto;
     }
     public List<Contacto> listaContacto(){
-        String sql = "SELECT * FROM contacto";
+        String sql = "SELECT * FROM contacto order by nombre";
 
         List<Contacto> listaContactos = new ArrayList<>();
         try (PreparedStatement preparedStatement  = connection.prepareStatement(sql)){

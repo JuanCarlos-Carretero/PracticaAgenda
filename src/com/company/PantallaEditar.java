@@ -1,7 +1,7 @@
 package com.company;
 
 public class PantallaEditar {
-    void mostrar(Contacto contacto) {
+    void mostrar(String busquedaContacto) {
         Titulo titulo = new Titulo();
         titulo.mostrar("EDITAR CONTACTO");
 
@@ -9,13 +9,13 @@ public class PantallaEditar {
         Mensaje mensaje = new Mensaje();
         BasedeDatos db = new BasedeDatos();
 
-
+        for (Contacto contacto:Main.db.ContactoEncontrado(busquedaContacto)) {
             //Esto permite editar el nombre sin problemas
             System.out.println("Nombre: " + contacto.nombre);
             String nuevoNombre = campoDeTexto.pedir("¿Por cual quieres cambiar?", true);
             if (!nuevoNombre.isEmpty()) { //Si el nombre introducido no es null se cambia por el nuevo nombre
                 contacto.nombre = nuevoNombre;
-                db.updateContactoN(contacto.nombre);
+                db.updateContactoN(busquedaContacto,contacto.nombre);
             }
 
             //Esto permite editar el apellido1 sin problemas
@@ -23,7 +23,7 @@ public class PantallaEditar {
             String nuevoApellido1 = campoDeTexto.pedir("¿Por cual quieres cambiar?", true);
             if (!nuevoNombre.isEmpty()) { //Si el apellido1 introducido no es null se cambia por el nuevo nombre
                 contacto.apellido1 = nuevoApellido1;
-                db.updateContactoA1(contacto.apellido1);
+                db.updateContactoA1(busquedaContacto,contacto.apellido1);
             }
 
             //Esto permite editar el apellido2 sin problemas
@@ -33,7 +33,7 @@ public class PantallaEditar {
                 contacto.apellido2 = null;
             } else if (!nuevoNombre.isEmpty()) { //Si el apellido2 introducido no es null se cambia por el nuevo nombre
                 contacto.apellido2 = nuevoApellido2;
-                db.updateContactoA2(contacto.apellido2);
+                db.updateContactoA2(busquedaContacto,contacto.apellido2);
             }
 
             //Esto permite editar el grupo sin problemas
@@ -43,7 +43,7 @@ public class PantallaEditar {
                 contacto.grupo = null;
             } else if (!nuevoNombre.isEmpty()) { //Si el grupo introducido no es null se cambia por el nuevo nombre
                 contacto.grupo = nuevoGrupo;
-                db.updateContactoG(contacto.grupo);
+                db.updateContactoG(busquedaContacto,contacto.grupo);
             }
 
             //Esto permite editar el telefono sin problemas
@@ -51,7 +51,7 @@ public class PantallaEditar {
             String nuevoTelefono = campoDeTexto.pedir("¿Por cual quieres cambiar?", true);
             if (!nuevoNombre.isEmpty()) { //Si el telefono introducido no es null se cambia por el nuevo nombre
                 contacto.nTelefono = nuevoTelefono;
-                db.updateContactonT(contacto.nTelefono);
+                db.updateContactonT(busquedaContacto,contacto.nTelefono);
             }
 
             //Esto permite editar el Email sin problemas
@@ -61,7 +61,7 @@ public class PantallaEditar {
                 contacto.eMail = null;
             } else if (!nuevoNombre.isEmpty()) { //Si el email introducido no es null se cambia por el nuevo nombre
                 contacto.eMail = nuevoEmail;
-                db.updateContactoE(contacto.eMail);
+                db.updateContactoE(busquedaContacto,contacto.eMail);
             }
 
             //Esto permite editar la direccion sin problemas
@@ -71,7 +71,7 @@ public class PantallaEditar {
                 contacto.direccion = null;
             } else if (!nuevoNombre.isEmpty()) { //Si la direccion introducido no es null se cambia por el nuevo nombre
                 contacto.direccion = nuevaDireccion;
-                db.updateContactoD(contacto.direccion);
+                db.updateContactoD(busquedaContacto,contacto.direccion);
             }
 
             //Esto permite borrar la fecha de cumpleaños sin problema
@@ -81,10 +81,10 @@ public class PantallaEditar {
                 contacto.fechaCumpleanyos = null;
             } else if (!nuevoNombre.isEmpty()) { //Si la fecha introducido no es null se cambia por el nuevo nombre
                 contacto.fechaCumpleanyos = nuevoFechaCumpleanyos;
-                db.updateContactoF(contacto.fechaCumpleanyos);
+                db.updateContactoF(busquedaContacto,contacto.fechaCumpleanyos);
             }
 
             mensaje.mostrarInfo("¡Contacto Editado Exitosamente!");
         }
-
+    }
 }

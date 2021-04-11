@@ -18,8 +18,6 @@ com/company/PantallaAyuda.java
  com.company.PantallaAyuda
 com/company/Mensaje.java
  com.company.Mensaje
-com/company/Agenda.java
- com.company.Agenda
 com/company/Titulo.java
  com.company.Titulo
 com/company/PantallaBuscar.java
