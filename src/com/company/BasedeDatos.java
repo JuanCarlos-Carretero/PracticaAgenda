@@ -25,7 +25,7 @@ public class BasedeDatos {
     }
     void deleteContacto(Contacto borrarContacto){
         try (Statement statement = connection.createStatement()){
-            statement.execute("Delete contacto from contacto where nombre like ?");
+            statement.execute("Delete contacto from contacto where nombre like '?'");
         }catch(Exception e){
             Mensaje mensaje = new Mensaje();
             mensaje.mostrarWarn("Este contacto no existe");
@@ -41,7 +41,7 @@ public class BasedeDatos {
 
     static void createTables(){
         try (Statement statement = connection.createStatement()) {
-            statement.execute("CREATE TABLE IF NOT EXISTS contacto (nombre text, apellido1 text, apellido2 text, grupo text, nTelefono integer, eMail text, direccion text, fechaCumpleanyos date)");
+            statement.execute("CREATE TABLE IF NOT EXISTS contacto (nombre text not null, apellido1 text not null, apellido2 text, grupo text, nTelefono integer not null, eMail text, direccion text, fechaCumpleanyos date)");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -144,15 +144,72 @@ public class BasedeDatos {
             System.out.println(e.getMessage());
         }
     }
-    public List<Contacto> buscaContacto(String busqueda){
-        String sql = "SELECT * FROM contacto where nombre = ?";
+
+    public List<Contacto> BuscaContacto(String nombre){
+        String sql = "SELECT * FROM contacto WHERE nombre = '?'";
 
         List<Contacto> listaContacto = new ArrayList<>();
         try (PreparedStatement preparedStatement  = connection.prepareStatement(sql)){
 
             ResultSet resultSet  = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                String nombre = resultSet.getString("nombre");
+                resultSet.getString("nombre");
+                listaContacto.add(new Contacto(nombre, null, null, null, null, null, null, null));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return listaContacto;
+    }
+
+    public boolean existeContacto(String comanda) {
+        // convertir comanda a nombre + apellido1
+        boolean ape=false;
+        String nombre="";
+        String apellido1="";
+        for (int i = 0; i < comanda.length(); i++) {
+            if (!ape){
+                if (comanda.charAt(i)==' '){
+                    ape=true;
+                }else{
+                    nombre=nombre+comanda.charAt(i);
+                }
+            }else{
+                apellido1=apellido1+comanda.charAt(i);
+            }
+        }
+
+        String sql = "SELECT nombre, apellido1 FROM contacto WHERE nombre like ? and apellido1 like ?";
+
+        try (PreparedStatement preparedStatement  = connection.prepareStatement(sql)){
+            preparedStatement.setString(1, nombre);
+            preparedStatement.setString(2,apellido1);
+            ResultSet resultSet  = preparedStatement.executeQuery();
+            String nombre1 = resultSet.getString("nombre");
+            String apellido_1 = resultSet.getString("apellido1");
+
+
+        } catch (SQLException e) {
+            Mensaje mensaje = new Mensaje();
+            mensaje.mostrarError("¡Este contacto no existe!");
+            return false;
+        }
+        return true;
+
+    }
+
+
+    public List<Contacto> ContactoEncontrado(String nombre){
+        String sql = "SELECT * FROM contacto WHERE nombre=?";
+
+        List<Contacto> listaContacto = new ArrayList<>();
+        try (PreparedStatement preparedStatement  = connection.prepareStatement(sql)){
+            preparedStatement.setString(1,nombre);
+
+            ResultSet resultSet  = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                resultSet.getString("nombre");
                 String apellido1 = resultSet.getString("apellido1");
                 String apellido2 = resultSet.getString("apellido2");
                 String grupo = resultSet.getString("grupo");

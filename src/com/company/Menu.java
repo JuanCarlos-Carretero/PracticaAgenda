@@ -5,7 +5,7 @@ public class Menu {
     String elegirOpcion(String[] opciones){
 
         boolean seguirPidiendo = true;
-        String opcion = "";
+        String opcion = " ";
         while(seguirPidiendo) {
             for (int i = 0; i < opciones.length; i++) {
                 System.out.println((i + 1) + ". " + opciones[i]);
@@ -23,7 +23,7 @@ public class Menu {
                     seguirPidiendo = false;
                 }
             } catch (Exception e){
-                System.out.println("Introduzca un numero");
+                System.out.println("¡Introduzca un numero!");
                 seguirPidiendo = false;
             }
         }

@@ -1,5 +1,7 @@
 package com.company;
 
+import static com.company.Main.*;
+
 public class PantallaBuscar {
     boolean mostrar() {
         Titulo titulo = new Titulo();
@@ -7,13 +9,9 @@ public class PantallaBuscar {
 
         // Aqui es donde hago la busqueda de una persona
         System.out.println("¿A quien buscas?");
-        String busqueda = Main.scan.nextLine();
+        String busquedaContacto = scan.next();
 
-        for (Contacto contacto : Main.db.buscaContacto(busqueda)) {
-            if (!busqueda.equals(contacto.nombre)) {
-                Mensaje mensaje = new Mensaje();
-                mensaje.mostrarError("¡Contacto no encontrado o ese nombre no esta guardado!");
-            } else {
+        for (Contacto contacto : Main.db.ContactoEncontrado(busquedaContacto)) {
                 // System.out.println(contacto.nombre);
                 System.out.println("Nombre: " + contacto.nombre);
 
@@ -56,15 +54,14 @@ public class PantallaBuscar {
                     pantallaEditar.mostrar(contacto);
                 } else if ("2".equals(opcion)) {
                     //Borrar contacto
-                    Main.db.deleteContacto(contacto);
+                    db.deleteContacto(contacto);
                     Mensaje mensaje = new Mensaje();
                     mensaje.mostrarInfo("¡El contacto se ha borrado satisfactoriamente!");
                 } else if ("3".equals(opcion)) {
                     //Salir
                     return false;
+                }
             }
-            }
-        }
         return true;
     }
 }

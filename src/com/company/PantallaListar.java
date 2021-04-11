@@ -14,10 +14,8 @@ public class PantallaListar {
             Mensaje mensaje = new Mensaje();
             mensaje.mostrarWarn("No hay contactos guardados");
         } else {
-            int i = 1;
             for(Contacto contacto: Main.db.listaContacto()){
-                System.out.println(i + "- " + contacto.nombre);
-                i++;
+                System.out.println(contacto.nombre);
             }
             System.out.println();
         }
